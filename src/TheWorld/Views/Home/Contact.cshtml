@@ -1,0 +1,55 @@
+﻿@model TheWorld.ViewModels.ContactViewModel
+
+@{
+    ViewData["Title"] = "Contact";
+}
+<h2>@ViewData["Title"].</h2>
+
+@section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}
+
+<div class="row">
+    <div class="col-sm-6">
+        <h3>@ViewData["Message"]</h3>
+        <form id="contact-form" action="/Home/Contact" method="post">
+            <div>
+                <span asp-validation-summary="All"></span>
+            </div>
+
+            @if (TempData["UserMessage"] != null)
+            {
+                <div class="form-message">@TempData["UserMessage"]</div>
+            }
+
+            <div class="form-group">
+                <label asp-for="Name">Name</label>
+                <input asp-for="Name" class="form-control" placeholder="Enter your name" />
+                <span asp-validation-for="Name" class="text-muted"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email">Email</label>
+                <input asp-for="Email" type="email" class="form-control" placeholder="Enter your email" />
+                <span asp-validation-for="Email" class="text-muted"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Message">Message</label>
+                <textarea asp-for="Message" class="form-control" rows="6" placeholder="Enter your message"></textarea>
+                <span asp-validation-for="Message" class="text-muted"></span>
+            </div>
+
+            <div>
+                <button type="submit" form="contact-form" value="Submit" class="btn btn-primary">
+                    <i class="fa fa-save"></i> Submit
+                </button>
+                <a href="/" class="btn btn-default">Cancel</a>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-6">
+        <h3>About Us</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mauris neque, posuere vitae ipsum a, laoreet mollis massa. In dictum auctor elit congue auctor. Donec ac accumsan sem. Nulla tempor quam hendrerit convallis rutrum. Ut in justo euismod, tincidunt tellus at, porttitor odio. Fusce condimentum, odio a lobortis dapibus, est velit convallis augue, id consequat ligula diam at dui. Ut at massa quis elit accumsan porttitor ut vel sapien. Morbi in orci eget odio vulputate pretium id posuere libero. Pellentesque sit amet ipsum id arcu vehicula semper. Proin accumsan scelerisque felis quis feugiat. Sed varius consectetur augue, in bibendum leo porta eu. Vestibulum porttitor eros id aliquet bibendum. Praesent maximus sodales erat nec ornare.</p>
+    </div>
+
+    </div>
